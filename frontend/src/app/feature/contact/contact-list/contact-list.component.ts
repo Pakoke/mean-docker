@@ -14,14 +14,14 @@ export class ContactListComponent implements OnInit {
   SelectionType = SelectionType;
 
   columns = [
-    { prop: "firstName", name: "First Name",  width: 250 },
-    { prop: "lastName",  width: 250  },
-    { prop: "email",  width: 250  },
+    { prop: "firstName", name: "Primer Nombre", width: 250 },
+    { prop: "lastName", width: 250 },
+    { prop: "email", width: 250 },
     { prop: "mobile" },
     { prop: "city" },
     { prop: "postalCode" }
   ];
-  constructor(private contactService: ContactService, private router: Router) {}
+  constructor(private contactService: ContactService, private router: Router) { }
   getAll(): void {
     this.contactService.getAll().subscribe(
       (data) => {
@@ -29,7 +29,7 @@ export class ContactListComponent implements OnInit {
         this.contacts = data;
       },
 
-      (error) => {}
+      (error) => { }
     );
   }
   onSelect(selected: any): void {

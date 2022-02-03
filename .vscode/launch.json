@@ -16,7 +16,9 @@
       "request": "attach",
       "name": "Attach by Process ID",
       "processId": "${command:PickProcess}",
-      "skipFiles": ["<node_internals>/**"]
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
     },
     {
       "name": "Docker Node.js Launch and Attach",
@@ -31,13 +33,35 @@
       "dockerServerReadyAction": {
         "pattern": "Application has started on port (\\d+)"
       }
+    },
+    {
+      "name": "Attach 3000 --inspect",
+      "type": "node",
+      "request": "attach",
+      "protocol": "inspector",
+      "port": 3000,
+      "localRoot": "${workspaceRoot}",
+      "remoteRoot": "/opt/node_app/app"
+    },
+    {
+      "name": "Docker Test (Attach 9230 --inspect)",
+      "type": "node",
+      "request": "attach",
+      "protocol": "inspector",
+      "port": 9230,
+      "localRoot": "${workspaceRoot}",
+      "remoteRoot": "/opt/node_app/app",
+      "preLaunchTask": "Docker npm run test-wait-debuger", // See ./tasks.json
+      "internalConsoleOptions": "openOnSessionStart"
     }
   ],
   "tasks": [
     {
       "type": "docker-run",
       "label": "docker-run: debug",
-      "dependsOn": ["docker-build"],
+      "dependsOn": [
+        "docker-build"
+      ],
       "dockerRun": {
         "env": {
           "DEBUG": "*"

@@ -1,0 +1,53 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/docker-in-docker
+{
+	"name": "Node & Angular Dind",
+	"dockerFile": "Dockerfile",
+	"runArgs": [
+		"--init",
+		"--privileged"
+	],
+	"mounts": [
+		"source=dind-var-lib-docker,target=/var/lib/docker,type=volume",
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws/credentials,target=/home/vscode/.aws/credentials,type=bind"
+	],
+	"overrideCommand": false,
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"tslint.alwaysShowRuleFailuresAsWarnings": true,
+		"editor.formatOnSave": true,
+		"editor.foldingStrategy": "auto",
+		"editor.fontLigatures": true,
+		"window.zoomLevel": 0,
+		"files.autoSave": "off",
+		"typescript.preferences.quoteStyle": "double",
+		"javascript.preferences.quoteStyle": "double",
+		"npm.scriptExplorerAction": "run",
+		"debug.openDebug": "openOnDebugBreak",
+		"typescript.updateImportsOnFileMove.enabled": "always",
+		"git.autofetch": true,
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/node_modules": true,
+			"**/dist": true
+		}
+	},
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-azuretools.vscode-docker",
+		"eg2.vscode-npm-script",
+		"christian-kohler.npm-intellisense",
+		"dbaeumer.vscode-eslint",
+		"christian-kohler.path-intellisense"
+	],
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "docker --version",
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode"
+}
